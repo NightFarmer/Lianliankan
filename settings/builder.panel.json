@@ -1,0 +1,8 @@
+{
+  "excludeScenes": [],
+  "packageName": "org.cocos2d.helloworld",
+  "platform": "web-mobile",
+  "startScene": "13b6d6e6-f1bc-4cb8-8e75-2938d381528a",
+  "startSceneUuid": "322853fe-66ff-4b3c-8237-d21b64740371",
+  "title": "HelloWorld"
+}
