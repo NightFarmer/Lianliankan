@@ -15,7 +15,11 @@ cc.Class({
         // ...
         info: null, //obj
         fk: null, //node
-        llk: null //js
+        llk: null, //js
+        scoreAudio: {
+            "default": null,
+            url: cc.AudioClip
+        }
     },
 
     // use this for initialization
@@ -53,5 +57,13 @@ cc.Class({
             return true;
         }
         return false;
+    },
+
+    onDestroy: function onDestroy() {
+        this.llk._blockCount--;
+        cc.audioEngine.playEffect(this.scoreAudio, false);
+        if (!this.llk._blockCount) {
+            this.llk.upgrate();
+        }
     }
 });

@@ -24,17 +24,50 @@ cc.Class({
             default:[],
             type:[cc.Prefab]
         },
+        missionLabel:{
+            default:null,
+            type:cc.Label
+        },
 		xSize : 10,
         ySize : 10,
         xSizeFk: 50,
         ySizeFk: 50,
 		_preCheck:null,
-		_map:[]
+		_map:[],
+		_blockCount:0,
+		_missionNum:1
     },
 
     // use this for initialization
     onLoad: function () {
-		xMin = Math.round(-this.xSize/2)
+		this.init();
+    },
+
+    // called every frame, uncomment this function to activate update callback
+    // update: function (dt) {
+
+    // },
+	findPath: function(loc1, loc2){
+		return pathUtil.findPath([loc1.x, loc1.y], [loc2.x, loc2.y], this._map, 1);
+	},
+	
+	upgrate:function(){
+        if(this.xSize>this.ySize){
+            this.ySize++;
+        }else{
+            this.xSize++;
+        }
+        if(this.xSize * this.ySize%2!==0){
+            this.upgrate();
+            return;
+        }
+        this.init();
+        this._missionNum++;
+        this.missionLabel.string = "第"+this._missionNum+"关"
+	},
+	
+	init: function(){
+	    xMin = Math.round(-this.xSize/2)
 		xMax = Math.round(this.xSize/2)
 		yMin = Math.round(-this.ySize/2)
 		yMax = Math.round(this.ySize/2)
@@ -53,6 +86,7 @@ cc.Class({
         for(var x=xMin; x<xMax; x++){ 
             for(var  y=yMin; y<yMax; y++){
 				this._map[x][y] = 0
+				this._blockCount++;
 		        var index = Math.floor(cc.random0To1()*(this.fk.length));
 				if((++fkCount)>fkMaxCount-this.fk.length){
 					for(var f=0; f<this.fk.length; f++){
@@ -91,13 +125,5 @@ cc.Class({
 				
             }
         }
-    },
-
-    // called every frame, uncomment this function to activate update callback
-    // update: function (dt) {
-
-    // },
-	findPath: function(loc1, loc2){
-		return pathUtil.findPath([loc1.x, loc1.y], [loc2.x, loc2.y], this._map, 1);
 	}
 });

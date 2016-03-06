@@ -73,7 +73,10 @@
     "_enabled": true,
     "info": null,
     "fk": null,
-    "llk": null
+    "llk": null,
+    "scoreAudio": {
+      "__uuid__": "5044b065-a664-43e4-9fce-8350fd671fa9"
+    }
   },
   {
     "__type__": "cc.Sprite",
@@ -96,6 +99,6 @@
       "__id__": 1
     },
     "asset": null,
-    "fileId": "f0fd2t6tk5PeKU3LqJU6epk"
+    "fileId": "3b2daXdrURHkbmUnONeHB6d"
   }
 ]
